@@ -139,6 +139,7 @@ public class VerbosTest {
 	@Test
 	public void deveDeserializarXMLAoSalvarUsuario() {
 		User user = new User("Usuario XML", 30);
+		
 		User usuarioInserido = given()
 			.log().all()
 			.contentType(ContentType.XML)
