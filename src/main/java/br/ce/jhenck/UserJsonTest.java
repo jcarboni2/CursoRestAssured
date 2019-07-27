@@ -78,7 +78,7 @@ public class UserJsonTest {
 			.get("https://restapi.wcaquino.me/users/4")
 		.then()
 			.statusCode(404)
-			.body("error", containsString("Usu·rio inexistente"));
+			.body("error", containsString("Usu√°rio inexistente"));
 
 	}
 	
@@ -90,7 +90,7 @@ public class UserJsonTest {
 		.then()
 			.statusCode(200)
 			.body("$", hasSize(3))
-			.body("name", hasItems("Jo„o da Silva", "Maria Joaquina", "Ana J˙lia"))
+			.body("name", hasItems("Jo√£o da Silva", "Maria Joaquina", "Ana J√∫lia"))
 			.body("age[1]", is(25))
 			.body("filhos.name", hasItem(Arrays.asList("Zezinho", "Luizinho")))
 			.body("salary", contains(1234.5678f, 2500, null));
@@ -108,10 +108,10 @@ public class UserJsonTest {
 			.body("age.findAll{it <= 25 && it > 20}.size()", is(1))
 			.body("findAll{it.age <= 25 && it.age > 20}.name", hasItem("Maria Joaquina"))
 			.body("findAll{it.age <= 25}[0].name", is("Maria Joaquina"))
-			.body("findAll{it.age <= 25}[-1].name", is("Ana J˙lia"))
+			.body("findAll{it.age <= 25}[-1].name", is("Ana J√∫lia"))
 			.body("find{it.age <= 25}.name", is("Maria Joaquina"))
-			.body("findAll{it.name.contains('n')}.name", hasItems("Maria Joaquina", "Ana J˙lia"))
-			.body("findAll{it.name.length() > 10}.name", hasItems("Maria Joaquina", "Jo„o da Silva"))
+			.body("findAll{it.name.contains('n')}.name", hasItems("Maria Joaquina", "Ana J√∫lia"))
+			.body("findAll{it.name.length() > 10}.name", hasItems("Maria Joaquina", "Jo√£o da Silva"))
 			.body("name.collect{it.toUpperCase()}", hasItems("MARIA JOAQUINA"))
 			.body("name.findAll{it.startsWith('Maria')}.collect{it.toUpperCase()}", hasItems("MARIA JOAQUINA"))
 			.body("name.findAll{it.startsWith('Maria')}.collect{it.toUpperCase()}", allOf(hasItem("MARIA JOAQUINA"), hasSize(1)))
