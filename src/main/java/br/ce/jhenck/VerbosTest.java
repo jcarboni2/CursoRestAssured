@@ -100,7 +100,7 @@ public class VerbosTest {
 			.log().all()
 			.statusCode(400)
 			.body("id", is(nullValue()))
-			.body("error", is("Name é um atributo obrigatório"));
+			.body("error", is("Name Ã© um atributo obrigatÃ³rio"));
 	}
 	
 	@Test
