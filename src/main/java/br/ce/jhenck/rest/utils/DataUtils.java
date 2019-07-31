@@ -21,7 +21,7 @@ public class DataUtils {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			formatoData = format.format(data);
 		} else {
-			throw new Exception("Formato não configurado");
+			throw new Exception("Formato de data não definido!");
 		}
 		return formatoData;
 	}

@@ -108,7 +108,7 @@ public class MovimentacoesTest extends BaseTest {
 	}
 	
 	@Test
-	public void t10_deveRemoverMovimentacao() {
+	public void deveRemoverMovimentacao() {
 		Integer MOV_ID = getIdMovPelaDescricao("Movimentacao para exclusao");
 		
 		given()
