@@ -71,8 +71,8 @@ public class OlaMundoTest {
 		assertThat(impares, hasItem(1));
 		assertThat(impares, hasItems(1, 7));
 
-		Assert.assertThat("Maria", Matchers.is(not("Jo„o")));
-		Assert.assertThat("Maria", not("Jo„o"));
+		Assert.assertThat("Maria", Matchers.is(not("Jo√£o")));
+		Assert.assertThat("Maria", not("Jo√£o"));
 		Assert.assertThat("Maria", anyOf(is("Maria"), is("Joaquina")));
 		Assert.assertThat("Joaquina", allOf(startsWith("Joa"), endsWith("ina"), containsString("qui")));
 	}
