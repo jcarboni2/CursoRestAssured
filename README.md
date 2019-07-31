@@ -17,4 +17,4 @@ $ git clone https://github.com/jcarboni2/CursoRestAssured.git
 
 ### Pré requisito
 
-$ Antes de iniciar seus testes, você precisa importar todas dependências encontradas no arquivo pom.xml
+$ Antes de iniciar seus testes, você precisa importar todas dependências encontradas no arquivo pom.xml e definir Text file encoding da IDE usada (ex: Eclipse) para UTF-8

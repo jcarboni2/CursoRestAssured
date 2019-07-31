@@ -98,7 +98,7 @@ public class AuthTest {
 	@Test
 	public void deveFazerAutenticacaoComTokenJWT() {
 		Map<String, String> login = new HashMap<String, String>();
-		//Entrar com o email e senha cadastrado no site https://srbarriga.herokuapp.com
+		//Entrar com o email e senha cadastrado no site https://barrigarest.wcaquino.me
 		login.put("email", "user@user.com");
 		login.put("senha", "1234");
 		System.out.println(login);
@@ -110,7 +110,7 @@ public class AuthTest {
 			.body(login)
 			.contentType(ContentType.JSON)
 		.when()
-			.post("http://barrigarest.wcaquino.me/signin")
+			.post("https://barrigarest.wcaquino.me/signin")
 		.then()
 			.log().all()
 			.statusCode(200)
@@ -121,7 +121,7 @@ public class AuthTest {
 			.log().all()
 			.header("Authorization", "JWT " + token)
 		.when()
-			.get("http://barrigarest.wcaquino.me/contas")
+			.get("https://barrigarest.wcaquino.me/contas")
 		.then()
 			.log().all()
 			.statusCode(200)
@@ -138,7 +138,7 @@ public class AuthTest {
 			.formParam("senha", "1234")
 			.contentType(ContentType.URLENC.withCharset("UTF-8"))
 		.when()
-			.post("https://srbarriga.herokuapp.com/logar")
+			.post("https://seubarriga.wcaquino.me/logar")
 		.then()
 			.log().all()
 			.statusCode(200)
@@ -152,7 +152,7 @@ public class AuthTest {
 			.log().all()
 			.cookie("connect.sid", cookie)
 		.when()
-			.get("https://srbarriga.herokuapp.com/contas")
+			.get("https://seubarriga.wcaquino.me/contas")
 		.then()
 			.log().all()
 			.statusCode(200)
