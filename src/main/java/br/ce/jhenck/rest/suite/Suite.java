@@ -29,8 +29,8 @@ public class Suite extends BaseTest{
 	@BeforeClass
 	public static void login() {
 		Map<String, String> login = new HashMap<String, String>();
-		//Entrar com o email e senha cadastrado no site https://srbarriga.herokuapp.com
-		login.put("email", "jch@jch.com");
+		//Entrar com o email e senha cadastrado no site https://barrigarest.wcaquino.me
+		login.put("email", "user@user.com");
 		login.put("senha", "1234");
 		
 		//login na API

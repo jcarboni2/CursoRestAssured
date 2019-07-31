@@ -98,7 +98,7 @@ public class AuthTest {
 	@Test
 	public void deveFazerAutenticacaoComTokenJWT() {
 		Map<String, String> login = new HashMap<String, String>();
-		//Entrar com o email e senha cadastrado no site https://srbarriga.herokuapp.com
+		//Entrar com o email e senha cadastrado no site https://barrigarest.wcaquino.me
 		login.put("email", "user@user.com");
 		login.put("senha", "1234");
 		System.out.println(login);
