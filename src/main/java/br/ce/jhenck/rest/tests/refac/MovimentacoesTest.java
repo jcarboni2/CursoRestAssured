@@ -1,42 +1,20 @@
 package br.ce.jhenck.rest.tests.refac;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.startsWith;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import br.ce.jhenck.rest.core.BaseTest;
 import br.ce.jhenck.rest.tests.Movimentacao;
+import br.ce.jhenck.rest.utils.BarrigaUtils;
 import br.ce.jhenck.rest.utils.DataUtils;
-import io.restassured.RestAssured;
 
 public class MovimentacoesTest extends BaseTest {
-	
-	@BeforeClass
-	public static void login() {
-		Map<String, String> login = new HashMap<String, String>();
-		//Entrar com o email e senha cadastrado no site https://srbarriga.herokuapp.com
-		login.put("email", "jch@jch.com");
-		login.put("senha", "1234");
-		
-		//login na API
-		//Receber token
-		String TOKEN = given()
-			.body(login)
-		.when()
-			.post("/signin")
-		.then()
-			.statusCode(200)
-			.extract().path("token");
-		
-		RestAssured.requestSpecification.header("Authorization", "JWT " + TOKEN);
-		
-		RestAssured.get("/reset").then().statusCode(200);
-	}
 	
 	@Test
 	public void deveInserirMovimentacaoComSucesso() throws Exception {
@@ -48,7 +26,7 @@ public class MovimentacoesTest extends BaseTest {
 			.post("/transacoes")
 		.then()
 			.statusCode(201)
-			.body("conta_id", is(getIdContaPeloNome("Conta para movimentacoes")))
+			.body("conta_id", is(BarrigaUtils.getIdContaPeloNome("Conta para movimentacoes")))
 			.body("descricao", is("Descrição da nova movimentação"))
 			.body("envolvido", is("Envolvido na mov"))
 			.body("tipo", is("REC"))
@@ -96,7 +74,7 @@ public class MovimentacoesTest extends BaseTest {
 	
 	@Test
 	public void naoDeveRemoverContaComMovimentacao() {
-		Integer CONTA_ID = getIdContaPeloNome("Conta com movimentacao");
+		Integer CONTA_ID = BarrigaUtils.getIdContaPeloNome("Conta com movimentacao");
 		
 		given()
 			.pathParam("id", CONTA_ID)
@@ -109,7 +87,7 @@ public class MovimentacoesTest extends BaseTest {
 	
 	@Test
 	public void deveRemoverMovimentacao() {
-		Integer MOV_ID = getIdMovPelaDescricao("Movimentacao para exclusao");
+		Integer MOV_ID = BarrigaUtils.getIdMovPelaDescricao("Movimentacao para exclusao");
 		
 		given()
 			.pathParam("id", MOV_ID)
@@ -119,17 +97,9 @@ public class MovimentacoesTest extends BaseTest {
 			.statusCode(204);
 	}
 	
-	public Integer getIdContaPeloNome(String nome) {
-		return RestAssured.get("/contas?nome=" + nome).then().extract().path("id[0]");
-	}
-	
-	public Integer getIdMovPelaDescricao(String desc) {
-		return RestAssured.get("/transacoes?descricao=" + desc).then().extract().path("id[0]");
-	}
-	
 	private Movimentacao getMovimentacaoValida() throws Exception {
 		Movimentacao mov = new Movimentacao();
-		mov.setConta_id(getIdContaPeloNome("Conta para movimentacoes"));
+		mov.setConta_id(BarrigaUtils.getIdContaPeloNome("Conta para movimentacoes"));
 		mov.setDescricao("Descrição da nova movimentação");
 		mov.setEnvolvido("Envolvido na mov");
 		mov.setTipo("REC");
